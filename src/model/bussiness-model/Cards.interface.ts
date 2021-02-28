@@ -1,4 +1,3 @@
-import { CreditCard } from './../entity/CreditCard.entity';
 
 export enum CardType {
     Debito = 'debito',
@@ -13,10 +12,4 @@ export default interface BasicCard {
     cardName: string
     expireDate: string
     type: CardType
-}
-
-// TODO - colocar todos os tipos de entidades abaixo e inserir no handler da service
-export default interface handlerCard {
-    credito: CreditCard
-    debito: any
 }
