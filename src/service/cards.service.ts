@@ -1,4 +1,4 @@
-import { Card } from './../model/entity/CreditCard.entity';
+import { Card } from '../model/entity/Card.entity';
 import cardsRepository from "../model/repository/cards.repository"
 
 export class CardsService {

@@ -1,4 +1,4 @@
-import { Card } from './../entity/CreditCard.entity';
+import { Card } from '../entity/Card.entity';
 import { getConnection, getRepository } from 'typeorm'
 
 

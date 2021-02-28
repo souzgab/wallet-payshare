@@ -6,7 +6,7 @@ createConnection({
     synchronize: true,
     logging: ["query", "error"],
     useUnifiedTopology:true,
-    entities: ["./src/model/entity/*.ts"],
+    entities: ["./dist/src/model/entity/*.js"],
     migrationsRun: false,
     migrations: ["disc/src/model/migrations/*.js"],
     ssl: true,
