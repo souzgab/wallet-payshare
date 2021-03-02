@@ -16,7 +16,7 @@ export class CardsService {
         return result
     }
 
-    public async findByNumber(cardNumber: number): Promise<any> {
+    public async findByNumber(cardNumber: string): Promise<any> {
         let result: any
         try {
             const card = await cardsRepository.findByNumber(cardNumber)

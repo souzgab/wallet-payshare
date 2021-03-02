@@ -11,8 +11,14 @@ export class Card implements ICard{
     @Column({type: 'number'})
     cvv: number 
 
-    @Column({type: 'number'})
-    cardNumber: number
+    @Column({type: 'text'})
+    cardNumber: string
+
+    @Column({type: 'text'})
+    cardNumberFourStart: string
+
+    @Column({type: 'text'})
+    cardNumberFourEnd: string
 
     @Column({type: 'text'})
     expiryDate: string
