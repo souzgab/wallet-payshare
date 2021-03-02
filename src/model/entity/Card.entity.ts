@@ -1,7 +1,7 @@
-import { CardType } from '../bussiness-model/Cards.interface';
 import { ObjectID } from "bson";
 import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn } from "typeorm"
 import ICard from "../bussiness-model/Card.interface"
+import { CardType } from "../bussiness-model/Cards.interface";
 
 @Entity('card')
 export class Card implements ICard{

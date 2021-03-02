@@ -23,13 +23,28 @@ export class CardsService {
             if(!card) {
                 return false
             } else {
-                return card
+                result = card
             }
         } catch (error) {
             return error
         }
         return result
     } 
+
+    public async findByUserId(idUser: string): Promise<any> {
+        let result: any
+        try {
+            if(await cardsRepository.findUser(idUser)){
+                const cards = await cardsRepository.findByUserId(idUser)
+                result = cards
+            } else {
+                result = false
+            }
+        } catch (error) {
+            return error 
+        }
+        return result
+    }
 }
 
 export default new CardsService()

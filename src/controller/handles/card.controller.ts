@@ -25,6 +25,18 @@ export class CardController {
             throw new Error(error)
         }
     }
+
+    public async findByUserId(req: Request, res: Response): Promise<void> {
+        try {
+            const { idUser } = req.params
+            const result = await cardsService.findByUserId(idUser)
+            return result ? res.status(201).json({message: "UserCards has been Found!", result}).end()
+             : res.status(400).json({message: "Error on finding card"}).end()
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
+        }
+    }
 }
 
 export default new CardController()

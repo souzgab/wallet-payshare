@@ -20,6 +20,26 @@ export class CardsRepository {
         })
         return resp
     }
+
+    public async findUser(idUser: string): Promise<any> {
+        return await getConnection()
+        .getRepository(Card)
+        .findOne({
+            where: {
+                idUsuario: idUser
+            }
+        })
+    } 
+
+    public async findByUserId(idUser: string): Promise<Card[]> {
+        return await getConnection()
+        .getRepository(Card)
+        .find({
+            where: {
+                idUsuario: idUser
+            }
+        })
+    }
 }
 
 export default new CardsRepository()
