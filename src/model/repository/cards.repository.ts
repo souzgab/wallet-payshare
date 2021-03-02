@@ -1,27 +1,30 @@
 import { Card } from '../entity/Card.entity';
 import { getConnection, getRepository } from 'typeorm'
-
+import bcrypt from 'bcrypt'
 
 export class CardsRepository {
     public async createCard(card: Card): Promise<Card>{
-        const CardEntity = await getConnection().getRepository(Card)
-        .create(card)
-        
+
         card.cardNumberFourStart = card.cardNumber.substr(0, 4)
         card.cardNumberFourEnd = card.cardNumber.substr(12, 15)
+        card.cvv = bcrypt.hashSync(card.cvv, 10)
 
+        const CardEntity = await getConnection()
+        .getRepository(Card)
+        .create(card)
+        
+        console.log(card)
         return await getConnection().getRepository(Card)
         .save(CardEntity)
     }
 
-    public async findByNumber(cardNumber: string): Promise<any> {
-        const resp = await getRepository(Card)
+    public async findByNumber(cardNumber: string): Promise<Card | undefined> {
+        return await getConnection().getRepository(Card)
         .findOne({
             where: {
                 cardNumber: cardNumber
             }
         })
-        return resp
     }
 
     public async findUser(idUser: string): Promise<any> {

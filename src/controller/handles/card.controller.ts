@@ -16,8 +16,8 @@ export class CardController {
 
     public async findByNumber(req: Request, res: Response): Promise<void> {
         try {
-            const { cardNumber } = req.params
-            const result = await cardsService.findByNumber(cardNumber)
+            const { cardNumber, cvv } = req.body
+            const result = await cardsService.findByNumber(cardNumber, cvv)
             return result ? res.status(201).json({message: "Card has been Found!", result}).end()
              : res.status(400).json({message: "Error on finding card"}).end()
         } catch (error) {

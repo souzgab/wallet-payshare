@@ -1,5 +1,6 @@
 import { Card } from '../model/entity/Card.entity';
 import cardsRepository from "../model/repository/cards.repository"
+import bcrypt from 'bcrypt'
 
 export class CardsService {
     public async createCard(card: Card): Promise<boolean> {
@@ -8,7 +9,9 @@ export class CardsService {
             if(await cardsRepository.findByNumber(card.cardNumber)) {
                 return false
             } else {
-                result = await cardsRepository.createCard(card)
+                if( await cardsRepository.createCard(card) ) {
+                    result = true
+                }
             }
         } catch (error) {
             return error
@@ -16,14 +19,18 @@ export class CardsService {
         return result
     }
 
-    public async findByNumber(cardNumber: string): Promise<any> {
+    public async findByNumber(cardNumber: string, cvv: string): Promise<any> {
         let result: any
         try {
             const card = await cardsRepository.findByNumber(cardNumber)
             if(!card) {
                 return false
             } else {
-                result = card
+                if (await bcrypt.compare(cvv, card.cvv)) {
+                    result = card
+                } else {
+                    result = false
+                }
             }
         } catch (error) {
             return error

@@ -8,8 +8,8 @@ export class Card implements ICard{
     @ObjectIdColumn()
     id: ObjectID;
 
-    @Column({type: 'number'})
-    cvv: number 
+    @Column({type: 'string'})
+    cvv: string 
 
     @Column({type: 'text'})
     cardNumber: string
