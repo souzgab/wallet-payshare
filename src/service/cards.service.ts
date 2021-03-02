@@ -1,16 +1,19 @@
 import { Card } from '../model/entity/Card.entity';
 import cardsRepository from "../model/repository/cards.repository"
 import bcrypt from 'bcrypt'
+import cardValidator from 'card-validator'
 
 export class CardsService {
-    public async createCard(card: Card): Promise<boolean> {
+    public async createCard(card: Card): Promise<any> {
         let result: any
         try {
             if(await cardsRepository.findByNumber(card.cardNumber)) {
-                return false
+                return { message: "Card already in" }
+            } else if (cardValidator.number(card.cardNumber)) {
+                return { message: "Wrong or Invalid Card number" }
             } else {
-                if( await cardsRepository.createCard(card) ) {
-                    result = true
+                if(await cardsRepository.createCard(card)) {
+                    result = { message: "Successfully Created!" }
                 }
             }
         } catch (error) {

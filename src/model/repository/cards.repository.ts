@@ -13,7 +13,6 @@ export class CardsRepository {
         .getRepository(Card)
         .create(card)
         
-        console.log(card)
         return await getConnection().getRepository(Card)
         .save(CardEntity)
     }
