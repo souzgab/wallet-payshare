@@ -1,5 +1,5 @@
 import { Card } from '../entity/Card.entity';
-import { getConnection, getRepository } from 'typeorm'
+import { getConnection } from 'typeorm'
 import bcrypt from 'bcrypt'
 
 export class CardsRepository {
@@ -17,16 +17,22 @@ export class CardsRepository {
         .save(CardEntity)
     }
 
-    public async findByNumber(cardNumber: string): Promise<Card | undefined> {
-        return await getConnection().getRepository(Card)
-        .findOne({
-            where: {
-                cardNumber: cardNumber
-            }
-        })
+    public async findByNumber(cardNumber: string): Promise<any | undefined> {
+        try {
+            const x = await getConnection().getRepository(Card)
+            .findOne({
+                where: {
+                    cardNumber: cardNumber
+                }
+            })
+            return x
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
+        }
     }
 
-    public async findUser(idUser: string): Promise<any> {
+    public async findUser(idUser: any): Promise<any> {
         return await getConnection()
         .getRepository(Card)
         .findOne({

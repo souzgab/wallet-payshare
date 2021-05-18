@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "api payment methods",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node ./index.ts",
@@ -22,17 +23,17 @@
   },
   "homepage": "https://github.com/souzgab/wallet-payshare#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.0",
+    "bcrypt": "5.0.1",
+    "body-parser": "1.19.0",
     "card-validator": "^8.1.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-autoroute": "^2.1.1",
-    "express-validator": "^6.10.0",
+    "cors": "2.8.5",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "express-autoroute": "2.1.1",
+    "express-validator": "6.10.0",
     "mongodb": "^3.6.4",
-    "mongoose": "^5.11.18",
-    "typeorm": "^0.2.28"
+    "mongoose": "5.11.18",
+    "typeorm": "^0.2.32"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

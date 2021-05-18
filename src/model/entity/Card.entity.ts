@@ -3,7 +3,7 @@ import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn } fr
 import ICard from "../bussiness-model/Card.interface"
 import { CardType } from "../bussiness-model/Cards.interface";
 
-@Entity('card')
+@Entity('Card')
 export class Card implements ICard{
     @ObjectIdColumn()
     id: ObjectID;
