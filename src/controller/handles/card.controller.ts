@@ -18,7 +18,7 @@ export class CardController {
         try {
             const { cardNumber, cvv } = req.body
             const result = await cardsService.findByNumber(cardNumber, cvv)
-            return result ? res.status(201).json({message: "Card has been Found!", result}).end()
+            return result ? res.status(201).json(result).end()
              : res.status(400).json({message: "Error on finding card"}).end()
         } catch (error) {
             console.log(error)
@@ -30,7 +30,7 @@ export class CardController {
         try {
             const { idUser } = req.params
             const result = await cardsService.findByUserId(idUser)
-            return result ? res.status(201).json({message: "UserCards has been Found!", result}).end()
+            return result ? res.status(201).json(result).end()
              : res.status(400).json({message: "Error on finding card"}).end()
         } catch (error) {
             console.log(error)
