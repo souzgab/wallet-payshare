@@ -9,7 +9,7 @@ createConnection({
     logging: 'all',
     logger: 'simple-console',
     useUnifiedTopology:true,
-    entities: ["dist/src/model/entity/*.js"],
+    entities: ["./dist/src/model/entity/*.js"],
     ssl: true
 }).then(conn => {
     // await conn.connect()

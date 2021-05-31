@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 
 export class CardsService {
     public async createCard(card: Card): Promise<any> {
-        let result: any = ""
+        let result: any
         try {
             if(await cardsRepository.findByNumber(card.cardNumber)) {
                 return { message: "Card already in" }
@@ -24,18 +24,19 @@ export class CardsService {
         try {
             const card = await cardsRepository.findByNumber(cardNumber)
             if(!card) {
+                console.log("Não Encontrado findByNumber")
                 return false
             } else {
                 if (await bcrypt.compare(cvv, card.cvv)) {
                     result = card
+                    return result
                 } else {
-                    result = false
+                    return false
                 }
             }
         } catch (error) {
             return error
         }
-        return result
     } 
 
     public async findByUserId(idUser: any): Promise<any> {
