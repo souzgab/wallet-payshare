@@ -40,18 +40,17 @@ export class CardsService {
     } 
 
     public async findByUserId(idUser: any): Promise<any> {
-        let result: any
         try {
-            if(await cardsRepository.findUser(idUser)){
-                const cards = await cardsRepository.findByUserId(idUser)
-                result = cards
+            const user = await cardsRepository.findUser(Number(idUser))
+            if(user){
+                const cards = await cardsRepository.findByUserId(Number(idUser))
+                return cards
             } else {
-                result = false
+                return false
             }
         } catch (error) {
             return error 
         }
-        return result
     }
 }
 

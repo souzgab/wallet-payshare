@@ -33,16 +33,23 @@ export class CardsRepository {
     }
 
     public async findUser(idUser: any): Promise<any> {
-        return await getConnection()
-        .getRepository(Card)
-        .findOne({
-            where: {
-                idUsuario: idUser
-            }
-        })
+        try {
+            const resp = await getConnection()
+            .getRepository(Card)
+            .findOne({
+                where: {
+                    idUsuario: idUser
+                }
+            })
+
+            console.log(resp)
+            return resp
+        } catch (error) {
+            console.log(error)
+        }
     } 
 
-    public async findByUserId(idUser: string): Promise<Card[]> {
+    public async findByUserId(idUser: any): Promise<Card[]> {
         return await getConnection()
         .getRepository(Card)
         .find({
